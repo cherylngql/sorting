@@ -19,9 +19,27 @@ function merge(splittedArr) {
     }
   }
   if (arr1[i]) {
-    mergedArray.push(arr1[i]);
+    mergedArray = mergedArray.concat(arr1.slice(i));
   } else {
     mergedArray = mergedArray.concat(arr2.slice(j));
   }
   return mergedArray;
+}
+
+// [5,3,1]
+// [[5,3],[1]] anytime, only 2 ele in arr
+// [[[5],[3]],[1]] split is done!
+// [[5,3],[1]]
+// [1,3,5]
+
+// mergeSort(array)
+// arr1 = split(array)[0] arr2=split(array)[1]
+
+function mergeSort(array) {
+  if (array.length === 1) {
+    return array;
+  } else {
+    let arr1 = split(array)[0], arr2 = split(array)[1];
+    return merge([mergeSort(arr1), mergeSort(arr2)]);
+  }
 }
